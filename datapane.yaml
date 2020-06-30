@@ -1,0 +1,13 @@
+name: anfavea_data_analysis
+script: anfavea_analysis.py
+parameters:
+  - name: year
+    type: enum
+    choices: ['2020','2019','2018','2017','2016','2015','2014']
+    default: '2020'
+    description: 'Select the year.'
+    required: True
+requirements:
+  - xlrd
+  - openpyxl
+repo: https://github.com/thomascenni/anfavea-data-analysis
