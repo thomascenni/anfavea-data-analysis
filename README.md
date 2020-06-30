@@ -2,4 +2,4 @@ An example of data analysis with Pandas and Datapane about the monthly productio
 
 More information on the blog post:
 
-[Data analysis with Pandas and Webdatarocks | Bird Solutions](https://thomascenni.com/blog/data-analysis-with-pandas-and-webdatarocks/)
+[Data analysis with Pandas, WebDataRocks and Datapane | Bird Solutions](https://thomascenni.com/blog/data-analysis-with-pandas-webdatarocks-and-datapane/)
