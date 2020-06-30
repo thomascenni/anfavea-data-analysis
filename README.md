@@ -1,4 +1,4 @@
-An example of data analysis with Pnadas and Datapane about the monthly production and licensing of vehicles in Brazil from Anfavea (National Association of Motor Vehicle Manufacturers in).
+An example of data analysis with Pandas and Datapane about the monthly production and licensing of vehicles in Brazil from Anfavea (National Association of Motor Vehicle Manufacturers).
 
 More information on the blog post:
 
