@@ -13,6 +13,7 @@ url = 'http://www.anfavea.com.br/docs/siteautoveiculos{}.xlsx'.format(str(year))
 
 df = pd.read_excel(
     url,
+    engine='openpyxl',
     sheet_name='IV. Licenciamento Empresa',
     usecols='B:P',
     header=6,
@@ -166,13 +167,13 @@ plot = alt.Chart(top10).mark_bar().encode(
 )
 
 report = dp.Report(
-    dp.Markdown("## Anfavea data analysis"),
-    dp.Markdown("Year: {}".format(str(year))),
-    dp.Markdown("**Cleaned data original from Excel**"),
-    dp.Table(df),
-    dp.Markdown("**Top 10 Total Sales YTD** for Automóveis"),
-    dp.Table(top10),
+    dp.Text("## Anfavea data analysis"),
+    dp.Text("Year: {}".format(str(year))),
+    dp.Text("**Cleaned data original from Excel**"),
+    dp.DataTable(df),
+    dp.Text("**Top 10 Total Sales YTD** for Automóveis"),
+    dp.DataTable(top10),
     dp.Plot(plot)
 )
 
-report.publish(headline='Anfavea Data Analysis', name='anfavea-data-analysis')
+report.publish(name='Anfavea Data Analysis', open=True)
