@@ -11,7 +11,7 @@ How to use:
 ```
 git clone https://github.com/thomascenni/anfavea-data-analysis.git
 cd anfavea-data-analysis/
-virtualenv .env
+python3 -m venv .env
 source .env/bin/activate
 pip install -r requirements.txt
 python anfavea_analysis.py 

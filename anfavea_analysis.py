@@ -5,14 +5,24 @@ import pandas as pd
 import numpy as np
 import datapane as dp
 import altair as alt
+import ssl
 
 dp.Params.load_defaults('datapane.yaml')
+# default year is 2022
 year = dp.Params.get('year')
 
-url = 'http://www.anfavea.com.br/docs/siteautoveiculos{}.xlsx'.format(str(year))
+url = 'https://www.anfavea.com.br/docs/siteautoveiculos{}.xlsx'.format(str(year))
+print("Downloading Excel from url {}".format(url))
+
+# avoid urlopen error [SSL: CERTIFICATE_VERIFY_FAILED]
+ssl._create_default_https_context = ssl._create_unverified_context
+
+# avoid HTTP Error 406
+headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:66.0) Gecko/20100101 Firefox/66.0"}
 
 df = pd.read_excel(
     url,
+    storage_options=headers,
     engine='openpyxl',
     sheet_name='IV. Licenciamento Empresa',
     usecols='B:P',
@@ -148,9 +158,9 @@ df.Grupo = df.Grupo.mask(
     'MAN'
 )
 
-# exporta para Excel e CSV
+# exporta para Excel
 df.to_excel('anfavea_data_analysis.xlsx', index=False)
-df.to_csv('anfavea_data_analysis.csv', index=False)
+# df.to_csv('anfavea_data_analysis.csv', index=False)
 
 df['Total (YTD)'] = df.sum(axis=1)
 df_total_sales = df[['Segmento', 'Marca', 'Total (YTD)']].copy()
@@ -176,4 +186,4 @@ report = dp.Report(
     dp.Plot(plot)
 )
 
-report.publish(name='Anfavea Data Analysis', open=True)
+report.upload(name='{} Anfavea Data Analysis'.format(year), publicly_visible = True)
