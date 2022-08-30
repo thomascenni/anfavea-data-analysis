@@ -160,7 +160,8 @@ df.Grupo = df.Grupo.mask(
 
 # exporta para Excel
 df.to_excel('anfavea_data_analysis.xlsx', index=False)
-# df.to_csv('anfavea_data_analysis.csv', index=False)
+# exporta para CSV para uso no blog com WebDataRocks
+df.to_csv('anfavea_data_analysis.csv', index=False)
 
 df['Total (YTD)'] = df.sum(axis=1)
 df_total_sales = df[['Segmento', 'Marca', 'Total (YTD)']].copy()
